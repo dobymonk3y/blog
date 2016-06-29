@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Article;
 use App\Models\Tag;
-use Carbon;
+use Carbon\Carbon;
 use Validator;
 
 class ArticleController extends Controller
@@ -32,6 +32,7 @@ class ArticleController extends Controller
 	//return view('articles.lists',compact('title','infos','first','last'));
 	//$articles = Article::where('published_at','<=',Carbon\Carbon::now())->latest()->get();
 	$articles = Article::latest()->published()->get();
+	//dd($articles);
 	return view('articles.index',compact('articles'));
     }
 
@@ -74,7 +75,8 @@ class ArticleController extends Controller
 	    return redirect('article/create')->withErrors($validator);
  	}
 	$input['intro'] = mb_substr($input['content'],0,32);
-	$input['published_at'] = Carbon\Carbon::now();
+	//$input['published_at'] = Carbon::now();
+	//published_at  这个时间已经在article.php  model 文件中做了处理.
 	$article = Article::create($input);
 	$article->tags()->attach($request->input('tag_list'));
 	return redirect('/');
@@ -133,6 +135,6 @@ class ArticleController extends Controller
     }
     public function published($query)
     {
-	$query->where('published_at','<=',Carbon/Carbon::now());
+	$query->where('published_at','<=',Carbon::now());
     }
 }

@@ -14,6 +14,14 @@
     <h2 class="post-title pad">
         <a href="/article/{{ $article->id }}"> {{ $article->title }}</a>
     </h2>
+    <ul class="post-meta pad group">
+        <li><i class="fa fa-clock-o"></i>{{ $article->published_at->diffForHumans() }}</li>
+        @if($article->tags)
+        @foreach($article->tags as $tag)
+            <li><i class="fa fa-tag"></i>{{ $tag->name }}</li>
+        @endforeach
+    @endif
+    </ul>
     <div class="post-inner">
         <div class="post-deco">
             <div class="hex hex-small">
@@ -26,9 +34,6 @@
             <div class="entry custome">
                 {{ $article->intro }}
             </div>
-	    <div class="entry custome" style="text-align:right;font-size:14px;color:#C0C0C0;">
-		{{ $article->published_at }}
-	    </div>
             <a class="more-link-custom" href="/article/{{ $article->id }}"><span><i>更多</i></span></a>
         </div>
     </div>

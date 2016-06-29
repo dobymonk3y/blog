@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Requests\StoreArticleRequest;
 use App\Http\Controllers\Controller;
 
 use App\Models\Article;
@@ -55,16 +56,16 @@ class ArticleController extends Controller
      *
      * 强烈推荐使用Request 方法来做数据验证
      */
-    /**
-    public function store(Requests\StoreArticleRequest $request)
+    
+    public function store(StoreArticleRequest $request)
     {
         $input = $request->all();
 	$input['intro'] = mb_substr($input['content'],0,32);
-	$input['published_at'] = Carbon\Carbon::now();
-	$res = Article::create($input);
-	return redirect('/');
+	$article = Article::create($input);
+	$article->tags()->attach($request->input('tag_list'));
+	return redirect('/articles');
     }
-    */
+    /**
     public function store(Request $request)
     {
 	$input = $request->all();
@@ -72,15 +73,16 @@ class ArticleController extends Controller
     	    'title' => 'required|min:4',
     	    'content' => 'required',
 	]);
-	/*
-	 * 引入 Validate
+	
+	//引入 Validate
 	$this->validate($request,[
 	    'title' => 'required|min:4',
 	    'content' => 'required'
 	]);
-	 */
+	
 	if ($validator->fails()) 
  	{
+	    //  这里使用的是自定义路由，并非resourse资源路由
 	    return redirect('article/create')->withErrors($validator);
  	}
 	$input['intro'] = mb_substr($input['content'],0,32);
@@ -90,7 +92,7 @@ class ArticleController extends Controller
 	$article->tags()->attach($request->input('tag_list'));
 	return redirect('/');
     }
-
+    */
     /**
      * Display the specified resource.
      *
@@ -117,7 +119,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+	return view('articles/edit',compact('article'));
     }
 
     /**
@@ -127,9 +130,12 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreArticleRequest $request, $id)
     {
-        //
+        $article = Article::findOrFail($id);
+	$article->update($request->all());
+	
+	return redirect('/articles');
     }
 
     /**

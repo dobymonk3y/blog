@@ -20,8 +20,11 @@
 //Route::get('user/{name?}', function ($name = 'frankie') {
 //    return 'Hello '.$name;
 //});
-
+/*
 Route::get('/','ArticleController@index');
 Route::get('article/create','ArticleController@create');
 Route::post('article/store','ArticleController@store');
 Route::get('article/{id}','ArticleController@show');
+ */
+// 资源路由
+Route::resource('articles','ArticleController');

@@ -1,6 +1,5 @@
 @extends('app')
 @section('content')
-<!--
 @if($errors->any())
     <ul class="alert alert-danger">
          @foreach($errors->all() as $error)
@@ -8,19 +7,8 @@
          @endforeach
     </ul>
 @endif
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
--->
-@include('errors/list')
-    <h1>撰写新文章</h1>
-    {!! Form::open(['method'=>'post','url'=>'articles']) !!}
+    <h1>{{$article->title}}</h1>
+    {!! Form::model($article,['method'=>'PATCH','url'=>'articles/'.$article->id]) !!}
 	<div class="form-group">
 	   {!! Form::label('title','标题:') !!}
 	   {!! Form::text('title',null,['class'=>'form-control']) !!}
@@ -35,11 +23,7 @@
 	    {!! Form::input('date','published_at',date('Y-m-d'),['class'=>'form-control']) !!}
 	</div>
 	<div class="form-group">
-            {!! Form::label('tag_list','选择标签') !!}
-            {!! Form::select('tag_list[]',$tags,null,['class'=>'form-control js-example-basic-multiple','multiple'=>'multiple']) !!}
-	</div>
-	<div class="form-group">
-           {!! Form::submit('发表文章',['class'=>'btn btn-success form-control']) !!}
+           {!! Form::submit('提交修改',['class'=>'btn btn-primary form-control']) !!}
         </div>
     {!! Form::close() !!}
 <script type="text/javascript">

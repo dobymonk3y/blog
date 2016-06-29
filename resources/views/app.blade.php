@@ -27,7 +27,7 @@
         <div class="nav-wrap">
             <ul class="nav container group">
                 <li class="menu-item">
-                    <a href="/" rel="nofollow" target="_blank">Laravel 5 Blog</a>
+                    <a href="/articles" rel="nofollow">Laravel 5 Blog</a>
                 </li>
             </ul>
         </div>

@@ -12,7 +12,7 @@
     <hr>-->
 
     <h2 class="post-title pad">
-        <a href="/article/{{ $article->id }}"> {{ $article->title }}</a>
+        <a href="/articles/{{ $article->id }}"> {{ $article->title }}</a>
     </h2>
     <ul class="post-meta pad group">
         <li><i class="fa fa-clock-o"></i>{{ $article->published_at->diffForHumans() }}</li>

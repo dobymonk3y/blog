@@ -75,7 +75,8 @@ class ArticleController extends Controller
  	}
 	$input['intro'] = mb_substr($input['content'],0,32);
 	$input['published_at'] = Carbon\Carbon::now();
-	Article::create($input);
+	$article = Article::create($input);
+	$article->tags()->attach($request->input('tag_list'));
 	return redirect('/');
     }
 

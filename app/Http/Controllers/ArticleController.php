@@ -52,6 +52,8 @@ class ArticleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * 强烈推荐使用Request 方法来做数据验证
      */
     /**
     public function store(Requests\StoreArticleRequest $request)
@@ -67,9 +69,16 @@ class ArticleController extends Controller
     {
 	$input = $request->all();
 	$validator = Validator::make($input, [
-    	    'title' => 'required|min:8',
+    	    'title' => 'required|min:4',
     	    'content' => 'required',
 	]);
+	/*
+	 * 引入 Validate
+	$this->validate($request,[
+	    'title' => 'required|min:4',
+	    'content' => 'required'
+	]);
+	 */
 	if ($validator->fails()) 
  	{
 	    return redirect('article/create')->withErrors($validator);

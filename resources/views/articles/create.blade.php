@@ -35,7 +35,18 @@
 	</div>
 	-->
 	<div class="form-group">
-	   {!! Form::submit('发表文章',['class'=>'btn btn-success form-control']) !!}
+            {!! Form::label('tag_list','选择标签') !!}
+            {!! Form::select('tag_list[]',$tags,null,['class'=>'form-control js-example-basic-multiple','multiple'=>'multiple']) !!}
+	</div>
+	<div class="form-group">
+           {!! Form::submit('发表文章',['class'=>'btn btn-success form-control']) !!}
         </div>
     {!! Form::close() !!}
+<script type="text/javascript">
+    $(function() {
+	$(".js-example-basic-multiple").select2({
+	    placeholder: "Select a state"
+	});
+    });
+</script>
 @endsection

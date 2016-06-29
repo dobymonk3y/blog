@@ -7,8 +7,9 @@
     <title>Laravel 5 教程</title>
     <link rel='stylesheet' href="/css/all.css" type='text/css' media='all'/>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel='stylesheet' href="/css/bootstrap.min.css" type='text/css' media='all'/>
-    <script type='text/javascript' src="/js/all.js"></script>
+    <script src='/js/jquery.min.js'></script>
+    <link rel='stylesheet' href='/dist/css/select2.css'>
+    <script src='/dist/js/select2.full.min.js'></script>
 </head>
 <body>
 <div id="wrapper">

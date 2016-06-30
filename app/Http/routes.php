@@ -26,5 +26,6 @@ Route::get('article/create','ArticleController@create');
 Route::post('article/store','ArticleController@store');
 Route::get('article/{id}','ArticleController@show');
  */
+Route::get('/','ArticleController@index');
 // 资源路由
 Route::resource('articles','ArticleController');

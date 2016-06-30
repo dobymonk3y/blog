@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('errors/list')
+
 <div class="col-md-4 col-md-offset-4">
     {!! Form::open(['method'=>'post','url'=>'/auth/login']) !!}
     <div class="form-group">

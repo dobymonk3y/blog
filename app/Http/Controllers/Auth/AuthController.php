@@ -19,6 +19,10 @@ class AuthController extends Controller
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
+    // 登录成功跳转地址
+    protected $redirectPath = '/articles';
+    // 退出后跳转地址
+    protected $redirectAfterLogout = 'auth/login';
 
     use AuthenticatesAndRegistersUsers;
 
@@ -41,7 +45,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:16|min:6',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);

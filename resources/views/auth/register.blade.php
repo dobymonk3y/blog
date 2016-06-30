@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-md-6 col-md-offset-3">
-    {!! Form::open(['url'=>'/auth/register']) !!}
+    {!! Form::open(['method'=>'post','url'=>'/auth/register']) !!}
     <div class="form-group">
 	{!! Form::label('name','Name:') !!}
 	{!! Form::text('name',null,['class'=>'form-control']) !!}
@@ -20,7 +20,7 @@
 	{!! Form::label('password_confirmation','Password_Confirm:') !!}
         {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
     </div>
-    {!! Form::submit('Sing Up',['class'=>'btn btn-primary form-control']) !!}
+    {!! Form::submit('Sing Up',['class'=>'btn btn-success form-control']) !!}
     {!! Form::close() !!}
 </div>
 

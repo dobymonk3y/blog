@@ -10,7 +10,7 @@ class Article extends Model
     public $table = "articles";
 
     // 可以直接通过update方法修改数据值
-    protected $fillable = ['title','intro','content','published_at'];
+    protected $fillable = ['title','intro','content','published_at','user_id'];
     
     // 将published_at 字段作为Carbon对象来处理
     protected $dates = ['published_at'];

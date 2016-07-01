@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Requests\StoreArticleRequest;
 
 use Illuminate\Http\Request;
@@ -61,6 +62,7 @@ class ArticleController extends Controller
     {
         $input = $request->all();
 	$input['intro'] = mb_substr($input['content'],0,32);
+	$input['user_id'] = Auth::user()->id;
 	$article = Article::create($input);
 	$article->tags()->attach($request->input('tag_list'));
 	return redirect('/articles');

@@ -19,8 +19,8 @@
 @endif
 -->
 @include('errors/list')
-    <h1>撰写新文章</h1>
-    {!! Form::open(['method'=>'post','url'=>'articles']) !!}
+    <h1>撰写新文章{{\Auth::user()->id}}{{\Auth::user()->name}}</h1>
+    {!! Form::open(['url'=>'articles']) !!}
 	<div class="form-group">
 	   {!! Form::label('title','标题:') !!}
 	   {!! Form::text('title',null,['class'=>'form-control']) !!}
